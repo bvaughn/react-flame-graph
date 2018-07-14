@@ -29,7 +29,7 @@
     "flame chart",
     "flamechart",
     "flame graph",
-    "flamegraph",
+    "flamegraph"
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
