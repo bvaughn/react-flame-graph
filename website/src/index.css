@@ -1,0 +1,19 @@
+body {
+  background-color: #263238;
+  color: #fff;
+  font-family: sans-serif;
+  font-weight: lighter;
+}
+
+a {
+  color: #84ccf5;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+#root {
+  max-width: 1024px;
+  margin: auto;
+}
