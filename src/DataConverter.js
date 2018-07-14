@@ -13,6 +13,10 @@ type Props = {|
   width: number,
 |};
 
+// Wrapper component responsible for converting raw chart data into the format required by FlameGraph.
+// Doing this conversion as a separate component has two benefits:
+// 1) It simplifies FlameGraph (slightly)
+// 2) It allows React's async rendering mode to more easily split up the work if this conversion is slow.
 export default class FlameGraphProcessor extends PureComponent<Props, void> {
   // Convert raw chart data to the format required by the flame graph.
   // Memoize this wrapper object for performance and to avoid breaking PureComponent's sCU.

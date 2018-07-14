@@ -22,9 +22,9 @@ const simpleData = {
       children: [
         {
           name: 'qux',
-          value: 2
-        }
-      ]
+          value: 2,
+        },
+      ],
     },
   ],
 };
@@ -47,17 +47,17 @@ export default function App({ data }: any) {
       <h2>Installation</h2>
       <CodeBlock value={EXAMPLE_INSTALLATION} />
       <h2>Usage</h2>
+      <p>Creating a flame graph can be simple!</p>
       <p>
-        Creating a flame graph can be simple!
-      </p>
-      <p>
-        First, define the data.
-        Flame graphs are just a tree of "nodes".
-        Each node must have a name (string) and a value (number).
-        Nodes may also have an array of children.
+        First, define the data. Flame graphs are just a tree of "nodes". Each
+        node must have a name (string) and a value (number). Nodes may also have
+        an array of children.
       </p>
       <CodeBlock value={EXAMPLE_DATA} />
-      <p>Next, pass the data to the <code>FlameGraph</code> component, along with a width and height.</p>
+      <p>
+        Next, pass the data to the <code>FlameGraph</code> component, along with
+        a width and height.
+      </p>
       <CodeBlock value={EXAMPLE_CODE} />
       <p>The example data above will display the following flame graph:</p>
       <AutoSizedFlameGraph data={simpleData} height={105} disableScroll />

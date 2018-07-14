@@ -19,6 +19,7 @@ type State = {|
 |};
 
 export default class FlameGraph extends PureComponent<Props, State> {
+  // Select the root node by default.
   state: State = {
     focusedNode: this.props.data.nodes[this.props.data.root],
   };
@@ -38,12 +39,14 @@ export default class FlameGraph extends PureComponent<Props, State> {
     const { data, height, width } = this.props;
     const { focusedNode } = this.state;
 
+    const itemData = this.getItemData(data, focusedNode, this.focusNode, width);
+
     return (
       <List
         containerTagName="svg"
         height={height}
         itemCount={data.height}
-        itemData={this.getItemData(data, focusedNode, this.focusNode, width)}
+        itemData={itemData}
         itemSize={rowHeight}
         width={width}
       >
