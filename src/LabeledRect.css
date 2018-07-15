@@ -1,0 +1,32 @@
+.g {
+  transition: all ease-in-out 200ms;
+}
+
+.rect {
+  cursor: pointer;
+  stroke: #ffffff;
+  transition: all ease-in-out 200ms;
+}
+
+.foreignObject {
+  transition: all ease-in-out 200ms;
+  display: block;
+  pointer-events: none;
+}
+
+.div {
+  pointer-events: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: sans-serif;
+  margin-left: 4px;
+  margin-right: 4px;
+  line-height: 1.5;
+  padding: 0;
+  font-weight: 400;
+  text-align: left;
+  transition: all ease-in-out 200ms;
+  user-select: none;
+}

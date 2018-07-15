@@ -26,7 +26,6 @@ export function transformChartData(rawData: RawData): ChartData {
 
   const nodes = {};
   const levels = [];
-  let height = 0;
 
   function convertNode(
     sourceNode: RawData,
@@ -34,8 +33,6 @@ export function transformChartData(rawData: RawData): ChartData {
     leftOffset: number
   ): ChartNode {
     const { children, name, value } = sourceNode;
-
-    height = Math.max(height, depth + 1);
 
     // Add this node to the node-map and assign it a UID.
     const targetNode = (nodes[uidCounter] = {
@@ -74,7 +71,7 @@ export function transformChartData(rawData: RawData): ChartData {
   convertNode(rawData, 0, 0);
 
   return {
-    height,
+    height: levels.length,
     levels,
     nodes,
     root: 0,

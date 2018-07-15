@@ -1,11 +1,9 @@
 /** @flow */
 
 import React from 'react';
-import {
-  minWidthToDisplay,
-  minWidthToDisplayText,
-  textHeight,
-} from './constants';
+import { minWidthToDisplayText, textHeight } from './constants';
+
+import styles from './LabeledRect.css';
 
 type Props = {|
   backgroundColor: string,
@@ -30,57 +28,30 @@ const LabeledRect = ({
   x,
   y,
 }: Props) => (
-  <g
-    style={{
-      transition: 'all ease-in-out 250ms',
-    }}
-    transform={`translate(${x},${y})`}
-  >
+  <g className={styles.g} transform={`translate(${x},${y})`}>
     <title>{label}</title>
     <rect
       width={width}
       height={height}
       fill={backgroundColor}
       onClick={onClick}
+      className={styles.rect}
       style={{
-        cursor: 'pointer',
         opacity: isDimmed ? 0.5 : 1,
-        stroke: '#fff',
-        transition: 'all ease-in-out 250ms',
       }}
     />
     {width >= minWidthToDisplayText && (
       <foreignObject
         width={width}
         height={height}
+        className={styles.foreignObject}
         style={{
-          transition: 'all ease-in-out 250ms',
           opacity: isDimmed ? 0.75 : 1,
-          display: width < minWidthToDisplay ? 'none' : 'block',
           paddingLeft: x < 0 ? -x : 0,
-          pointerEvents: 'none',
         }}
         y={height < textHeight ? -textHeight : 0}
       >
-        <div
-          style={{
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-            fontSize: '12px',
-            fontFamily: 'sans-serif',
-            marginLeft: '4px',
-            marginRight: '4px',
-            lineHeight: '1.5',
-            padding: '0 0 0',
-            fontWeight: '400',
-            color: color,
-            textAlign: 'left',
-            transition: 'all ease-in-out 250ms',
-            userSelect: 'none',
-          }}
-        >
+        <div className={styles.div} style={{ color }}>
           {label}
         </div>
       </foreignObject>

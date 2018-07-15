@@ -2,6 +2,7 @@
 
 import React, { Fragment } from 'react';
 import AutoSizedFlameGraph from './AutoSizedFlameGraph';
+import ChartDataLoader from './ChartDataLoader';
 import CodeBlock from './CodeBlock';
 
 import EXAMPLE_CODE from './code/example-code.js';
@@ -29,7 +30,7 @@ const simpleData = {
   ],
 };
 
-export default function App({ data }: any) {
+export default function App() {
   return (
     <Fragment>
       <h1>
@@ -43,7 +44,7 @@ export default function App({ data }: any) {
         Click a row in the chart below to zoom in or out. Scroll up or down to
         see more of the chart.
       </p>
-      <AutoSizedFlameGraph data={data} height={240} />
+      <ChartDataLoader height={240} url="/live.json" />
       <h2>Installation</h2>
       <CodeBlock value={EXAMPLE_INSTALLATION} />
       <h2>Usage</h2>
