@@ -33,6 +33,12 @@ const LabeledRect = ({
     <rect
       width={width}
       height={height}
+      fill="white"
+      className={styles.rect}
+    />
+    <rect
+      width={width}
+      height={height}
       fill={backgroundColor}
       onClick={onClick}
       className={styles.rect}
