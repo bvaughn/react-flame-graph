@@ -17,6 +17,7 @@ export type ChartData = {|
 |};
 
 export type ItemData = {|
+  containerWidth: number,
   data: ChartData,
   focusedNode: ChartNode,
   focusNode: (chartNode: ChartNode) => void,
