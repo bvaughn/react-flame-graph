@@ -1,13 +1,14 @@
 /** @flow */
 
 import React from 'react';
-import { minWidthToDisplayText, textHeight } from './constants';
+import { minWidthToDisplayText } from './constants';
 
 import styles from './LabeledRect.css';
 
 type Props = {|
   backgroundColor: string,
   color: string,
+  containerWidth: number,
   height: number,
   isDimmed?: boolean,
   label: string,
@@ -20,6 +21,7 @@ type Props = {|
 const LabeledRect = ({
   backgroundColor,
   color,
+  containerWidth,
   height,
   isDimmed = false,
   label,
@@ -27,42 +29,42 @@ const LabeledRect = ({
   width,
   x,
   y,
-}: Props) => (
-  <g className={styles.g} transform={`translate(${x},${y})`}>
-    <title>{label}</title>
-    <rect
-      width={width}
-      height={height}
-      fill="white"
-      className={styles.rect}
-    />
-    <rect
-      width={width}
-      height={height}
-      fill={backgroundColor}
+}: Props) => {
+  // Aligning rects with the left border simplifies horizontal text alignment.
+  // Otherwise, we would have to add left padding to ensure the text remains visible,
+  // But width and padding animations would not line up, since their deltas would differ.
+  // This approach is simpler and looks visually consistent.
+  if (x < 0) {
+    width += x;
+    x = 0;
+  }
+
+  // Fake a border by shrinking the rect slightly.
+  height -= 1;
+  width = Math.min(width, containerWidth) - 1;
+
+  // Fake opacity dim for nodes above the selected ones.
+  // Using a filter prevents text from bleeding into other texts during animation.
+  // See GitHub issue 1.
+  const filter = isDimmed ? 'brightness(115%) grayscale(50%)' : undefined;
+
+  return (
+    <div
+      className={styles.div}
       onClick={onClick}
-      className={styles.rect}
       style={{
-        opacity: isDimmed ? 0.5 : 1,
+        backgroundColor,
+        color,
+        height,
+        filter,
+        transform: `translate(${x}px, ${y}px)`,
+        width,
       }}
-    />
-    {width >= minWidthToDisplayText && (
-      <foreignObject
-        width={width}
-        height={height}
-        className={styles.foreignObject}
-        style={{
-          opacity: isDimmed ? 0.75 : 1,
-          paddingLeft: x < 0 ? -x : 0,
-        }}
-        y={height < textHeight ? -textHeight : 0}
-      >
-        <div className={styles.div} style={{ color }}>
-          {label}
-        </div>
-      </foreignObject>
-    )}
-  </g>
-);
+      title={label}
+    >
+      &nbsp;{width >= minWidthToDisplayText ? label : ''}
+    </div>
+  );
+};
 
 export default LabeledRect;

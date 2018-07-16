@@ -29,6 +29,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
   // Attach the memoized function to the instance,
   // So that multiple instances will maintain their own memoized cache.
   getItemData = memoize((data, focusedNode, focusNode, width) => ({
+    containerWidth: width,
     data,
     focusedNode,
     focusNode,
@@ -43,7 +44,6 @@ export default class FlameGraph extends PureComponent<Props, State> {
 
     return (
       <List
-        containerTagName="svg"
         height={height}
         itemCount={data.height}
         itemData={itemData}
