@@ -30,12 +30,7 @@ const LabeledRect = ({
 }: Props) => (
   <g className={styles.g} transform={`translate(${x},${y})`}>
     <title>{label}</title>
-    <rect
-      width={width}
-      height={height}
-      fill="white"
-      className={styles.rect}
-    />
+    <rect width={width} height={height} fill="white" className={styles.rect} />
     <rect
       width={width}
       height={height}
