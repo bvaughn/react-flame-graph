@@ -6652,9 +6652,9 @@ react-test-renderer@^16.4.0:
     prop-types "^15.6.0"
     react-is "^16.4.0"
 
-react-window@^1.0.0-alpha.4:
-  version "1.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.0.0-alpha.4.tgz#e81ba566be6b54558a314e507b0f090309c28a72"
+react-window@^1:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.0.0.tgz#2d599c3c914e8d4bd54647aebcb9161269f9ec94"
   dependencies:
     memoize-one "^3.1.1"
 

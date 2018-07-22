@@ -43,8 +43,8 @@ export default class FlameGraph extends PureComponent<Props, State> {
 
     return (
       <List
-        containerTagName="svg"
         height={height}
+        innerTagName="svg"
         itemCount={data.height}
         itemData={itemData}
         itemSize={rowHeight}
