@@ -7,6 +7,7 @@ export type ChartNode = {|
   left: number,
   name: string,
   width: number,
+  tooltip: string,
 |};
 
 export type ChartData = {|
@@ -27,4 +28,5 @@ export type RawData = {|
   name: string,
   value: number,
   children?: Array<RawData>,
+  tooltip?: string,
 |};

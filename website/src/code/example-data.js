@@ -5,6 +5,7 @@ const data = {
     {
       name: 'bar',
       value: 1,
+      tooltip: 'I am a custom tooltip'
     },
     {
       name: 'baz',
