@@ -7,7 +7,7 @@ export type ChartNode = {|
   left: number,
   name: string,
   width: number,
-  tooltip: string,
+  tooltip?: string,
 |};
 
 export type ChartData = {|

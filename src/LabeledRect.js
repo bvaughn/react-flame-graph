@@ -11,7 +11,7 @@ type Props = {|
   height: number,
   isDimmed?: boolean,
   label: string,
-  tooltip: string,
+  tooltip?: string,
   onClick: Function,
   width: number,
   x: number,
