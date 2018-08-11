@@ -53,7 +53,7 @@ export default function App() {
       <p>
         First, define the data. Flame graphs are just a tree of "nodes". Each
         node must have a name (string) and a value (number). Nodes may also have
-        an array of children and an optional tooltip.
+        an array of children.
       </p>
       <CodeBlock value={EXAMPLE_DATA} />
       <p>
@@ -63,7 +63,6 @@ export default function App() {
       <CodeBlock value={EXAMPLE_CODE} />
       <p>The example data above will display the following flame graph:</p>
       <AutoSizedFlameGraph data={simpleData} height={105} disableScroll />
-      <p>Note: Hover on the node with the name 'bar' and see the custom tooltip appear.</p>
     </Fragment>
   );
 }
