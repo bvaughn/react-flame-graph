@@ -1,6 +1,6 @@
 # react-flame-graph
 
-> React component for visualizing profiling data 
+> React component for visualizing profiling data
 
 [![NPM](https://img.shields.io/npm/v/react-flame-graph.svg)](https://www.npmjs.com/package/react-flame-graph) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
