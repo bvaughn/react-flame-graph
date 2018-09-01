@@ -14,16 +14,18 @@ const simpleData = {
   value: 5,
   children: [
     {
-      name: 'bar',
+      name: 'custom tooltip',
       value: 1,
-      tooltip: 'I am a custom tooltip',
+      tooltip: 'Custom tooltip shown on hover',
     },
     {
-      name: 'baz',
+      name: 'custom background color',
       value: 3,
+      backgroundColor: '#35f',
+      color: '#fff',
       children: [
         {
-          name: 'qux',
+          name: 'leaf',
           value: 2,
         },
       ],
@@ -52,8 +54,12 @@ export default function App() {
       <p>Creating a flame graph can be simple!</p>
       <p>
         First, define the data. Flame graphs are just a tree of "nodes". Each
-        node must have a name (string) and a value (number). Nodes may also have
-        an array of children.
+        node must have a <code>name</code> (string) and a <code>value</code> (number).
+        Descendents should be nested within a <code>children</code> array.
+      </p>
+      <p>
+        Optionally, nodes may define a custom tooltip (string), <code>color</code> (string),
+        and <code>backgroundColor</code> (string).
       </p>
       <CodeBlock value={EXAMPLE_DATA} />
       <p>

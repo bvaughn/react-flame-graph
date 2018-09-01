@@ -1,21 +1,26 @@
 const data = {
-  name: 'foo',
+  name: 'root',
   value: 5,
   children: [
     {
-      name: 'bar',
+      name: 'custom tooltip',
       value: 1,
 
-      // Each node can also specify a "tooltip" to be shown on hover.
+      // Each node can specify a "tooltip" to be shown on hover.
       // By default, the node's "name" will be used for this.
-      tooltip: 'I am a custom tooltip'
+      tooltip: 'Custom tooltip shown on hover',
     },
     {
-      name: 'baz',
+      name: 'custom colors',
+
+      // Each node can also provide a custom "backgroundColor" or text "color".
+      backgroundColor: '#35f',
+      color: '#fff',
+
       value: 3,
       children: [
         {
-          name: 'qux',
+          name: 'leaf',
           value: 2
         }
       ]
