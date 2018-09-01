@@ -12,6 +12,7 @@ type Props = {|
   data: ChartData,
   height: number,
   width: number,
+  onFocus?: (chartNode: ChartNode) => void,
 |};
 
 type State = {|
@@ -55,8 +56,12 @@ export default class FlameGraph extends PureComponent<Props, State> {
     );
   }
 
-  focusNode = (chartNode: ChartNode) =>
+  focusNode = (chartNode: ChartNode) => {
+    if (this.props.onFocus) {
+      this.props.onFocus(chartNode);
+    }
     this.setState({
       focusedNode: chartNode,
     });
+  }
 }
