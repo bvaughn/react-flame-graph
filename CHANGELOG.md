@@ -1,6 +1,10 @@
 Changelog
 ------------
 
+##### 1.2.0
+* 🎉 Support custom `color` and `backgroundColor` options ([jgzuke](https://github.com/jgzuke) - [#13](https://github.com/bvaughn/react-flame-graph/pull/13))
+* 🎉 Add `onChange` callback for when a new node is selected ([jgzuke](https://github.com/jgzuke) - [#15](https://github.com/bvaughn/react-flame-graph/pull/15))
+
 ##### 1.1.0
 * 🎉 Add support for optional `tooltip` attribute to data. ([maaz93](https://github.com/maaz93) - [#10](https://github.com/bvaughn/react-flame-graph/pull/10))
 

@@ -1,6 +1,6 @@
 {
   "name": "react-flame-graph",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "React component for visualizing profiling data",
   "author":
     "Brian Vaughn <brian.david.vaughn@gmail.com> (https://github.com/bvaughn/)",
