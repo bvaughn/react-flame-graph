@@ -17,7 +17,14 @@ export default function AutoSizedFlameGraph({ data, height }: any) {
     >
       <AutoSizer>
         {({ height: autoSizerHeight, width }) => (
-          <FlameGraph data={data} height={autoSizerHeight} width={width} />
+          <FlameGraph
+            data={data}
+            height={autoSizerHeight}
+            width={width}
+            onChange={node => {
+              console.log(`"${node.name}"" focused`);
+            }}
+          />
         )}
       </AutoSizer>
     </div>

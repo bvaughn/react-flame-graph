@@ -54,18 +54,19 @@ export default function App() {
       <p>Creating a flame graph can be simple!</p>
       <p>
         First, define the data. Flame graphs are just a tree of "nodes". Each
-        node must have a <code>name</code> (string) and a <code>value</code> (number).
-        Descendents should be nested within a <code>children</code> array.
+        node must have a <code>name</code> (string) and a <code>value</code>{' '}
+        (number). Descendents should be nested within a <code>children</code>{' '}
+        array.
       </p>
       <p>
-        Optionally, nodes may define a custom tooltip (string), <code>color</code> (string),
-        and <code>backgroundColor</code> (string).
+        Optionally, nodes may define a custom tooltip (string),{' '}
+        <code>color</code> (string), and <code>backgroundColor</code> (string).
       </p>
       <CodeBlock value={EXAMPLE_DATA} />
       <p>
         Next, pass the data to the <code>FlameGraph</code> component, along with
-        a width and height. Optionally include an <code>onFocus</code> callback
-        to capture click events.
+        a width and height. You can also provide an <code>onChange</code>{' '}
+        callback to be notified when a new node is selected.
       </p>
       <CodeBlock value={EXAMPLE_CODE} />
       <p>The example data above will display the following flame graph:</p>
