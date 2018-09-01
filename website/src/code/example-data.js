@@ -6,9 +6,13 @@ const data = {
       name: 'bar',
       value: 1,
 
-      // Each node can also specify a "tooltip" to be shown on hover.
+      // Each node can specify a "tooltip" to be shown on hover.
       // By default, the node's "name" will be used for this.
-      tooltip: 'I am a custom tooltip'
+      tooltip: 'I am a custom tooltip',
+
+      // Each node can also provide a custom "backgroundColor"
+      // or text "color".
+      backgroundColor: '#EF9A9A'
     },
     {
       name: 'baz',

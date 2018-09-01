@@ -17,6 +17,7 @@ const simpleData = {
       name: 'bar',
       value: 1,
       tooltip: 'I am a custom tooltip',
+      backgroundColor: '#EF9A9A',
     },
     {
       name: 'baz',
@@ -53,7 +54,8 @@ export default function App() {
       <p>
         First, define the data. Flame graphs are just a tree of "nodes". Each
         node must have a name (string) and a value (number). Nodes may also have
-        an array of children.
+        an array of children, a custom tooltip, or specified color and background
+        color.
       </p>
       <CodeBlock value={EXAMPLE_DATA} />
       <p>
