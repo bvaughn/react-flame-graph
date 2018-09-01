@@ -32,12 +32,20 @@ export function transformChartData(rawData: RawData): ChartData {
     depth: number,
     leftOffset: number
   ): ChartNode {
-    const { children, name, tooltip, value } = sourceNode;
+    const {
+      children,
+      name,
+      tooltip,
+      value,
+      color,
+      backgroundColor,
+    } = sourceNode;
 
     // Add this node to the node-map and assign it a UID.
     const targetNode = (nodes[uidCounter] = {
-      backgroundColor: getNodeBackgroundColor(value, maxValue),
-      color: getNodeColor(value, maxValue),
+      backgroundColor:
+        backgroundColor || getNodeBackgroundColor(value, maxValue),
+      color: color || getNodeColor(value, maxValue),
       depth,
       left: leftOffset,
       name,
