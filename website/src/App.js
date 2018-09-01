@@ -58,7 +58,8 @@ export default function App() {
       <CodeBlock value={EXAMPLE_DATA} />
       <p>
         Next, pass the data to the <code>FlameGraph</code> component, along with
-        a width and height.
+        a width and height. Optionally include an <code>onFocus</code> callback
+        to capture click events.
       </p>
       <CodeBlock value={EXAMPLE_CODE} />
       <p>The example data above will display the following flame graph:</p>
