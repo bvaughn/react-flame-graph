@@ -9,19 +9,17 @@ const colorGradientLength = colorGradient.length;
 
 function getNodeBackgroundColor(value, maxValue) {
   return backgroundColorGradient[
-    Math.round(value / maxValue * (backgroundColorGradientLength - 1))
+    Math.round((value / maxValue) * (backgroundColorGradientLength - 1))
   ];
 }
 
 function getNodeColor(value, maxValue) {
   return colorGradient[
-    Math.round(value / maxValue * (colorGradientLength - 1))
+    Math.round((value / maxValue) * (colorGradientLength - 1))
   ];
 }
 
 export function transformChartData(rawData: RawData): ChartData {
-  let uidCounter = 0;
-
   const maxValue = rawData.value;
 
   const nodes = {};
@@ -30,7 +28,8 @@ export function transformChartData(rawData: RawData): ChartData {
   function convertNode(
     sourceNode: RawData,
     depth: number,
-    leftOffset: number
+    leftOffset: number,
+    indexPath: Array<nuber> = []
   ): ChartNode {
     const {
       children,
@@ -41,8 +40,10 @@ export function transformChartData(rawData: RawData): ChartData {
       backgroundColor,
     } = sourceNode;
 
+    const uid = indexPath.join('/');
+
     // Add this node to the node-map and assign it a UID.
-    const targetNode = (nodes[uidCounter] = {
+    const targetNode = (nodes[uid] = {
       backgroundColor:
         backgroundColor || getNodeBackgroundColor(value, maxValue),
       color: color || getNodeColor(value, maxValue),
@@ -57,18 +58,16 @@ export function transformChartData(rawData: RawData): ChartData {
     if (levels.length <= depth) {
       levels.push([]);
     }
-    levels[depth].push(uidCounter);
-
-    // Now that the current UID has been used, increment it.
-    uidCounter++;
+    levels[depth].push(uid);
 
     // Process node children.
     if (Array.isArray(children)) {
-      children.forEach(sourceChildNode => {
+      children.forEach((sourceChildNode, i) => {
         const targetChildNode = convertNode(
           sourceChildNode,
           depth + 1,
-          leftOffset
+          leftOffset,
+          indexPath.concat(i)
         );
         leftOffset += targetChildNode.width;
       });
@@ -83,6 +82,6 @@ export function transformChartData(rawData: RawData): ChartData {
     height: levels.length,
     levels,
     nodes,
-    root: 0,
+    root: '',
   };
 }
