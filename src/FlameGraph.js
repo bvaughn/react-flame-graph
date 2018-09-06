@@ -10,14 +10,12 @@ import { rowHeight } from './constants';
 
 type Props = {|
   data: ChartData,
-  focusedId?: string,
   height: number,
   onChange?: (chartNode: ChartNode) => void,
   width: number,
 |};
 
 type State = {|
-  focusedId?: string,
   focusedNode: ChartNode,
 |};
 
@@ -52,20 +50,9 @@ export default class FlameGraph extends PureComponent<Props, State> {
     );
   };
 
-  // If the focusedId prop changes update the focusedNode state.
-  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    const { focusedId } = nextProps;
-    if (focusedId === prevState.focusedId) {
-      return null;
-    }
-
-    // Default to root node
-    const { nodes, root: rootId } = nextProps.data;
-    const focusedNode = nodes[focusedId || rootId];
-    return {
-      focusedNode,
-      focusedId,
-    };
+  focusNodeId(uid: string) {
+    const { nodes } = this.props.data;
+    this.focusNode(nodes[uid]);
   }
 
   render() {
