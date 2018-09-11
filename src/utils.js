@@ -20,6 +20,8 @@ function getNodeColor(value, maxValue) {
 }
 
 export function transformChartData(rawData: RawData): ChartData {
+  let uidCounter = 0;
+
   const maxValue = rawData.value;
 
   const nodes = {};
@@ -28,8 +30,7 @@ export function transformChartData(rawData: RawData): ChartData {
   function convertNode(
     sourceNode: RawData,
     depth: number,
-    leftOffset: number,
-    indexPath: Array<nuber> = []
+    leftOffset: number
   ): ChartNode {
     const {
       children,
@@ -38,12 +39,13 @@ export function transformChartData(rawData: RawData): ChartData {
       value,
       color,
       backgroundColor,
+      uid,
     } = sourceNode;
 
-    const uid = indexPath.join('/');
+    const uidOrCounter = uid || uidCounter
 
     // Add this node to the node-map and assign it a UID.
-    const targetNode = (nodes[uid] = {
+    const targetNode = (nodes[uidOrCounter] = {
       backgroundColor:
         backgroundColor || getNodeBackgroundColor(value, maxValue),
       color: color || getNodeColor(value, maxValue),
@@ -58,16 +60,18 @@ export function transformChartData(rawData: RawData): ChartData {
     if (levels.length <= depth) {
       levels.push([]);
     }
-    levels[depth].push(uid);
+    levels[depth].push(uidOrCounter);
+
+    // Now that the current UID has been used, increment it.
+    uidCounter++;
 
     // Process node children.
     if (Array.isArray(children)) {
-      children.forEach((sourceChildNode, i) => {
+      children.forEach(sourceChildNode => {
         const targetChildNode = convertNode(
           sourceChildNode,
           depth + 1,
-          leftOffset,
-          indexPath.concat(i)
+          leftOffset
         );
         leftOffset += targetChildNode.width;
       });
@@ -78,10 +82,12 @@ export function transformChartData(rawData: RawData): ChartData {
 
   convertNode(rawData, 0, 0);
 
+  const rootUid = rawData.uid || 0
+
   return {
     height: levels.length,
     levels,
     nodes,
-    root: '',
+    root: rootUid,
   };
 }

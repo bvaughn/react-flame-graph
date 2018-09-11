@@ -25,10 +25,10 @@ export default class FlameGraphProcessor extends PureComponent<Props, void> {
   // So that multiple instances will maintain their own memoized cache.
   getChartdata = memoize(rawData => transformChartData(rawData));
 
-  flameGraphRef = React.createRef();
-
-  focusNodeId(uid: string) {
-    this.flameGraphRef.current.focusNodeId(uid);
+  focusNodeId(uid: any) {
+    if (this.flameGraphRef) {
+      this.flameGraphRef.focusNodeId(uid);
+    }
   }
 
   render() {
@@ -36,6 +36,14 @@ export default class FlameGraphProcessor extends PureComponent<Props, void> {
 
     const chartData = this.getChartdata(rawData);
 
-    return <FlameGraph ref={this.flameGraphRef} data={chartData} {...rest} />;
+    return (
+      <FlameGraph
+        ref={node => {
+          this.flameGraphRef = node;
+        }}
+        data={chartData}
+        {...rest}
+      />
+    );
   }
 }

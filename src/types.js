@@ -8,6 +8,7 @@ export type ChartNode = {|
   name: string,
   tooltip?: string,
   width: number,
+  uid?: any,
 |};
 
 export type ChartData = {|

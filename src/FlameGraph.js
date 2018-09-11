@@ -50,7 +50,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
     );
   };
 
-  focusNodeId(uid: string) {
+  focusNodeId(uid: any) {
     const { nodes } = this.props.data;
     this.focusNode(nodes[uid]);
   }
