@@ -42,7 +42,7 @@ export function transformChartData(rawData: RawData): ChartData {
       uid,
     } = sourceNode;
 
-    const uidOrCounter = uid || uidCounter
+    const uidOrCounter = uid || `_${uidCounter}`;
 
     // Add this node to the node-map and assign it a UID.
     const targetNode = (nodes[uidOrCounter] = {
