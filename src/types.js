@@ -8,7 +8,6 @@ export type ChartNode = {|
   name: string,
   tooltip?: string,
   width: number,
-  uid?: any,
 |};
 
 export type ChartData = {|
@@ -21,7 +20,7 @@ export type ChartData = {|
 export type ItemData = {|
   data: ChartData,
   focusedNode: ChartNode,
-  focusNode: (chartNode: ChartNode) => void,
+  focusNode: (chartNode: ChartNode, uid: any) => void,
   scale: (value: number) => number,
 |};
 
@@ -30,4 +29,7 @@ export type RawData = {|
   name: string,
   tooltip?: string,
   value: number,
+  color?: string,
+  backgroundColor?: string,
+  uid?: any,
 |};

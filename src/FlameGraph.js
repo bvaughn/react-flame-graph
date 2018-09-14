@@ -11,7 +11,7 @@ import { rowHeight } from './constants';
 type Props = {|
   data: ChartData,
   height: number,
-  onChange?: (chartNode: ChartNode) => void,
+  onChange?: (chartNode: ChartNode, uid: any) => void,
   width: number,
 |};
 
@@ -36,7 +36,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
     scale: value => (value / focusedNode.width) * width,
   }));
 
-  focusNode = (chartNode: ChartNode) => {
+  focusNode = (chartNode: ChartNode, uid: any) => {
     this.setState(
       {
         focusedNode: chartNode,
@@ -44,7 +44,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
       () => {
         const { onChange } = this.props;
         if (typeof onChange === 'function') {
-          onChange(chartNode);
+          onChange(chartNode, uid);
         }
       }
     );
@@ -52,7 +52,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
 
   focusNodeId(uid: any) {
     const { nodes } = this.props.data;
-    this.focusNode(nodes[uid]);
+    this.focusNode(nodes[uid], uid);
   }
 
   render() {

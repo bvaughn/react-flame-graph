@@ -11,7 +11,7 @@ type Props = {|
   data: RawData,
   height: number,
   width: number,
-  onChange?: (chartNode: ChartNode) => void,
+  onChange?: (chartNode: ChartNode, uid: any) => void,
 |};
 
 // Wrapper component responsible for converting raw chart data into the format required by FlameGraph.
