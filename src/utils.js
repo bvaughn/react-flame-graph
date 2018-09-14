@@ -82,7 +82,7 @@ export function transformChartData(rawData: RawData): ChartData {
 
   convertNode(rawData, 0, 0);
 
-  const rootUid = rawData.uid || 0
+  const rootUid = rawData.uid || '_0';
 
   return {
     height: levels.length,
