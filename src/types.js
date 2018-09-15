@@ -22,6 +22,8 @@ export type ItemData = {|
   focusedNode: ChartNode,
   focusNode: (chartNode: ChartNode) => void,
   scale: (value: number) => number,
+  rowHeight: number,
+  textHeight: number,
 |};
 
 export type RawData = {|

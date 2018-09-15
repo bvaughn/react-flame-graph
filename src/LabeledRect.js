@@ -1,7 +1,7 @@
 /** @flow */
 
 import React from 'react';
-import { minWidthToDisplayText, textHeight } from './constants';
+import { minWidthToDisplayText } from './constants';
 
 import styles from './LabeledRect.css';
 
@@ -9,6 +9,7 @@ type Props = {|
   backgroundColor: string,
   color: string,
   height: number,
+  textHeight: number,
   isDimmed?: boolean,
   label: string,
   onClick: Function,
@@ -22,6 +23,7 @@ const LabeledRect = ({
   backgroundColor,
   color,
   height,
+  textHeight,
   isDimmed = false,
   label,
   onClick,

@@ -4,7 +4,7 @@ import type { ItemData } from './types';
 
 import React, { PureComponent } from 'react';
 import LabeledRect from './LabeledRect';
-import { minWidthToDisplay, rowHeight } from './constants';
+import { minWidthToDisplay } from './constants';
 
 type Props = {|
   data: ItemData,
@@ -19,7 +19,7 @@ export default class ItemRenderer extends PureComponent<Props, void> {
   render() {
     const { data: itemData, index, style } = this.props;
 
-    const { data, focusedNode, scale } = itemData;
+    const { data, focusedNode, scale, rowHeight, textHeight } = itemData;
 
     const uids = data.levels[index];
     const focusedNodeLeft = scale(focusedNode.left);
@@ -55,6 +55,7 @@ export default class ItemRenderer extends PureComponent<Props, void> {
           backgroundColor={node.backgroundColor}
           color={node.color}
           height={rowHeight}
+          textHeight={textHeight}
           isDimmed={index < focusedNode.depth}
           key={uid}
           label={node.name}

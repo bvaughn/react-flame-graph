@@ -2,8 +2,8 @@
 
 export const minWidthToDisplay = 1;
 export const minWidthToDisplayText = 12;
-export const rowHeight = 20;
-export const textHeight = 18;
+export const defaultRowHeight = 20;
+export const defaultTextHeight = 18;
 
 // http://gka.github.io/palettes/#colors=#37AFA9,#FEBC38|steps=25|bez=0|coL=0
 export const backgroundColorGradient = [
