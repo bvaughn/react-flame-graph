@@ -21,8 +21,8 @@ export default function AutoSizedFlameGraph({ data, height }: any) {
             data={data}
             height={autoSizerHeight}
             width={width}
-            onChange={node => {
-              console.log(`"${node.name}"" focused`);
+            onChange={(node, uid) => {
+              console.log(`Node "${node.name}" (${uid}) focused`);
             }}
           />
         )}

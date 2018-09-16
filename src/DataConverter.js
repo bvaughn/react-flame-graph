@@ -23,27 +23,25 @@ export default class FlameGraphProcessor extends PureComponent<Props, void> {
   // Memoize this wrapper object for performance and to avoid breaking PureComponent's sCU.
   // Attach the memoized function to the instance,
   // So that multiple instances will maintain their own memoized cache.
-  getChartdata = memoize(rawData => transformChartData(rawData));
+  __getChartdata = memoize(rawData => transformChartData(rawData));
 
-  focusNodeId(uid: any) {
-    if (this.flameGraphRef) {
-      this.flameGraphRef.focusNodeId(uid);
+  __setFlameGraphRef = ref => {
+    this.__flameGraphRef = ref;
+  };
+
+  focusNode(uid: any) {
+    if (this.__flameGraphRef) {
+      this.__flameGraphRef.focusNode(uid);
     }
   }
 
   render() {
     const { data: rawData, ...rest } = this.props;
 
-    const chartData = this.getChartdata(rawData);
+    const chartData = this.__getChartdata(rawData);
 
     return (
-      <FlameGraph
-        ref={node => {
-          this.flameGraphRef = node;
-        }}
-        data={chartData}
-        {...rest}
-      />
+      <FlameGraph ref={this.__setFlameGraphRef} data={chartData} {...rest} />
     );
   }
 }

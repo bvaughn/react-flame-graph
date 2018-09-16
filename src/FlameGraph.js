@@ -36,7 +36,9 @@ export default class FlameGraph extends PureComponent<Props, State> {
     scale: value => value / focusedNode.width * width,
   }));
 
-  focusNode = (chartNode: ChartNode, uid: any) => {
+  focusNode = (uid: any) => {
+    const { nodes } = this.props.data;
+    const chartNode = nodes[uid];
     this.setState(
       {
         focusedNode: chartNode,
@@ -49,11 +51,6 @@ export default class FlameGraph extends PureComponent<Props, State> {
       }
     );
   };
-
-  focusNodeId(uid: any) {
-    const { nodes } = this.props.data;
-    this.focusNode(nodes[uid], uid);
-  }
 
   render() {
     const { data, height, width } = this.props;

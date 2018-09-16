@@ -33,16 +33,16 @@ export function transformChartData(rawData: RawData): ChartData {
     leftOffset: number
   ): ChartNode {
     const {
+      backgroundColor,
       children,
+      color,
+      id,
       name,
       tooltip,
       value,
-      color,
-      backgroundColor,
-      uid,
     } = sourceNode;
 
-    const uidOrCounter = uid || `_${uidCounter}`;
+    const uidOrCounter = id || `_${uidCounter}`;
 
     // Add this node to the node-map and assign it a UID.
     const targetNode = (nodes[uidOrCounter] = {
@@ -82,7 +82,7 @@ export function transformChartData(rawData: RawData): ChartData {
 
   convertNode(rawData, 0, 0);
 
-  const rootUid = rawData.uid || '_0';
+  const rootUid = rawData.id || '_0';
 
   return {
     height: levels.length,

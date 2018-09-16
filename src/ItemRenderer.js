@@ -58,7 +58,7 @@ export default class ItemRenderer extends PureComponent<Props, void> {
           isDimmed={index < focusedNode.depth}
           key={uid}
           label={node.name}
-          onClick={() => itemData.focusNode(node, uid)}
+          onClick={() => itemData.focusNode(uid)}
           tooltip={node.tooltip}
           width={nodeWidth}
           x={nodeLeft - focusedNodeLeft}
