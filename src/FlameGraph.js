@@ -6,13 +6,15 @@ import React, { PureComponent } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import memoize from 'memoize-one';
 import ItemRenderer from './ItemRenderer';
-import { rowHeight } from './constants';
+import { defaultRowHeight, defaultTextHeight } from './constants';
 
 type Props = {|
   data: ChartData,
   height: number,
   onChange?: (chartNode: ChartNode) => void,
   width: number,
+  rowHeight: number,
+  textHeight: number,
 |};
 
 type State = {|
@@ -29,12 +31,16 @@ export default class FlameGraph extends PureComponent<Props, State> {
   // Memoize this wrapper object to avoid breaking PureComponent's sCU.
   // Attach the memoized function to the instance,
   // So that multiple instances will maintain their own memoized cache.
-  getItemData = memoize((data, focusedNode, focusNode, width) => ({
-    data,
-    focusedNode,
-    focusNode,
-    scale: value => value / focusedNode.width * width,
-  }));
+  getItemData = memoize(
+    (data, focusedNode, focusNode, width, rowHeight, textHeight) => ({
+      data,
+      focusedNode,
+      focusNode,
+      scale: value => value / focusedNode.width * width,
+      rowHeight,
+      textHeight,
+    })
+  );
 
   focusNode = (chartNode: ChartNode) => {
     this.setState(
@@ -51,10 +57,17 @@ export default class FlameGraph extends PureComponent<Props, State> {
   };
 
   render() {
-    const { data, height, width } = this.props;
+    const { data, height, width, rowHeight, textHeight } = this.props;
     const { focusedNode } = this.state;
 
-    const itemData = this.getItemData(data, focusedNode, this.focusNode, width);
+    const itemData = this.getItemData(
+      data,
+      focusedNode,
+      this.focusNode,
+      width,
+      rowHeight || defaultRowHeight,
+      textHeight || defaultTextHeight
+    );
 
     return (
       <List
@@ -62,7 +75,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
         innerTagName="svg"
         itemCount={data.height}
         itemData={itemData}
-        itemSize={rowHeight}
+        itemSize={rowHeight || defaultRowHeight}
         width={width}
       >
         {ItemRenderer}
