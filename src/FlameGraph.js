@@ -33,7 +33,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
     data,
     focusedNode,
     focusNode,
-    scale: value => (value / focusedNode.width) * width,
+    scale: value => value / focusedNode.width * width,
   }));
 
   focusNode = (chartNode: ChartNode, uid: any) => {

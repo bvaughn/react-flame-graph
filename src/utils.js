@@ -9,13 +9,13 @@ const colorGradientLength = colorGradient.length;
 
 function getNodeBackgroundColor(value, maxValue) {
   return backgroundColorGradient[
-    Math.round((value / maxValue) * (backgroundColorGradientLength - 1))
+    Math.round(value / maxValue * (backgroundColorGradientLength - 1))
   ];
 }
 
 function getNodeColor(value, maxValue) {
   return colorGradient[
-    Math.round((value / maxValue) * (colorGradientLength - 1))
+    Math.round(value / maxValue * (colorGradientLength - 1))
   ];
 }
 
