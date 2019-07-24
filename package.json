@@ -33,7 +33,7 @@
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "files": ["dist"],
+  "files": ["src", "dist"],
   "scripts": {
     "precommit": "lint-staged",
     "prettier": "prettier --write '**/*.{js,json,css}'",
