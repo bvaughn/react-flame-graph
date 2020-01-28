@@ -21,6 +21,8 @@ export type ItemData = {|
   data: ChartData,
   focusedNode: ChartNode,
   focusNode: (chartNode: ChartNode, uid: any) => void,
+  onMouseOut?: (e: any, node: ChartNode) => void,
+  onMouseOver?: (e: any, node: ChartNode) => void,
   scale: (value: number) => number,
 |};
 

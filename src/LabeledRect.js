@@ -12,6 +12,8 @@ type Props = {|
   isDimmed?: boolean,
   label: string,
   onClick: Function,
+  onMouseOut?: Function,
+  onMouseOver?: Function,
   tooltip?: string,
   width: number,
   x: number,
@@ -25,12 +27,19 @@ const LabeledRect = ({
   isDimmed = false,
   label,
   onClick,
+  onMouseOut,
+  onMouseOver,
   tooltip,
   width,
   x,
   y,
 }: Props) => (
-  <g className={styles.g} transform={`translate(${x},${y})`}>
+  <g
+    className={styles.g}
+    transform={`translate(${x},${y})`}
+    onMouseOver={onMouseOver}
+    onMouseOut={onMouseOut}
+  >
     <title>{tooltip != null ? tooltip : label}</title>
     <rect width={width} height={height} fill="white" className={styles.rect} />
     <rect
