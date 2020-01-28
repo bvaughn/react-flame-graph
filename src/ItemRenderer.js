@@ -59,8 +59,8 @@ export default class ItemRenderer extends PureComponent<Props, void> {
           key={uid}
           label={node.name}
           onClick={() => itemData.focusNode(uid)}
-          onMouseOut={onMouseOut ? e => onMouseOut(e, node) : null}
-          onMouseOver={onMouseOver ? e => onMouseOver(e, node) : null}
+          onMouseOut={onMouseOut ? e => onMouseOut(e, node.source) : null}
+          onMouseOver={onMouseOver ? e => onMouseOver(e, node.source) : null}
           tooltip={node.tooltip}
           width={nodeWidth}
           x={nodeLeft - focusedNodeLeft}

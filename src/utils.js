@@ -52,6 +52,7 @@ export function transformChartData(rawData: RawData): ChartData {
       depth,
       left: leftOffset,
       name,
+      source: sourceNode,
       tooltip,
       width: value / maxValue,
     });

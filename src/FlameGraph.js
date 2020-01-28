@@ -1,6 +1,6 @@
 /** @flow */
 
-import type { ChartData, ChartNode } from './types';
+import type { ChartData, ChartNode, RawData } from './types';
 
 import React, { PureComponent } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -12,8 +12,8 @@ type Props = {|
   data: ChartData,
   height: number,
   onChange?: (chartNode: ChartNode, uid: any) => void,
-  onMouseOut?: (e: any, node: ChartNode) => void,
-  onMouseOver?: (e: any, node: ChartNode) => void,
+  onMouseOut?: (e: any, node: RawData) => void,
+  onMouseOver?: (e: any, node: RawData) => void,
   width: number,
 |};
 
