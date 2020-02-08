@@ -17,13 +17,6 @@ export type ChartData = {|
   root: any,
 |};
 
-export type ItemData = {|
-  data: ChartData,
-  focusedNode: ChartNode,
-  focusNode: (chartNode: ChartNode, uid: any) => void,
-  scale: (value: number) => number,
-|};
-
 export type RawData = {|
   children?: Array<RawData>,
   name: string,
@@ -32,4 +25,13 @@ export type RawData = {|
   color?: string,
   backgroundColor?: string,
   uid?: any,
+|};
+
+export type ItemData = {|
+  data: ChartData,
+  focusedNode: ChartNode,
+  focusNode: (chartNode: ChartNode, uid: any) => void,
+  onMouseOut?: (e: any, node: RawData) => void,
+  onMouseOver?: (e: any, node: RawData) => void,
+  scale: (value: number) => number,
 |};

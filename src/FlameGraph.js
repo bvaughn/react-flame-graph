@@ -1,6 +1,6 @@
 /** @flow */
 
-import type { ChartData, ChartNode } from './types';
+import type { ChartData, ChartNode, RawData } from './types';
 
 import React, { PureComponent } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -12,6 +12,8 @@ type Props = {|
   data: ChartData,
   height: number,
   onChange?: (chartNode: ChartNode, uid: any) => void,
+  onMouseOut?: (e: any, node: RawData) => void,
+  onMouseOver?: (e: any, node: RawData) => void,
   width: number,
 |};
 
@@ -29,12 +31,16 @@ export default class FlameGraph extends PureComponent<Props, State> {
   // Memoize this wrapper object to avoid breaking PureComponent's sCU.
   // Attach the memoized function to the instance,
   // So that multiple instances will maintain their own memoized cache.
-  getItemData = memoize((data, focusedNode, focusNode, width) => ({
-    data,
-    focusedNode,
-    focusNode,
-    scale: value => value / focusedNode.width * width,
-  }));
+  getItemData = memoize(
+    (data, focusedNode, focusNode, onMouseOut, onMouseOver, width) => ({
+      data,
+      focusedNode,
+      focusNode,
+      scale: value => value / focusedNode.width * width,
+      onMouseOut,
+      onMouseOver,
+    })
+  );
 
   focusNode = (uid: any) => {
     const { nodes } = this.props.data;
@@ -53,10 +59,17 @@ export default class FlameGraph extends PureComponent<Props, State> {
   };
 
   render() {
-    const { data, height, width } = this.props;
+    const { data, height, onMouseOut, onMouseOver, width } = this.props;
     const { focusedNode } = this.state;
 
-    const itemData = this.getItemData(data, focusedNode, this.focusNode, width);
+    const itemData = this.getItemData(
+      data,
+      focusedNode,
+      this.focusNode,
+      onMouseOut,
+      onMouseOver,
+      width
+    );
 
     return (
       <List
