@@ -1,5 +1,7 @@
 /** @flow */
 
+import type { RawData } from './types';
+
 import React from 'react';
 import { minWidthToDisplayText, textHeight } from './constants';
 
@@ -8,12 +10,14 @@ import styles from './LabeledRect.css';
 type Props = {|
   backgroundColor: string,
   color: string,
+  disableDefaultTooltips: boolean,
   height: number,
   isDimmed?: boolean,
   label: string,
   onClick: Function,
-  onMouseOut?: Function,
-  onMouseOver?: Function,
+  onMouseEnter: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  onMouseLeave: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  onMouseMove: (event: SyntheticMouseEvent<*>, node: RawData) => void,
   tooltip?: string,
   width: number,
   x: number,
@@ -23,12 +27,14 @@ type Props = {|
 const LabeledRect = ({
   backgroundColor,
   color,
+  disableDefaultTooltips,
   height,
   isDimmed = false,
   label,
   onClick,
-  onMouseOut,
-  onMouseOver,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseMove,
   tooltip,
   width,
   x,
@@ -37,10 +43,13 @@ const LabeledRect = ({
   <g
     className={styles.g}
     transform={`translate(${x},${y})`}
-    onMouseOver={onMouseOver}
-    onMouseOut={onMouseOut}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    onMouseMove={onMouseMove}
   >
-    <title>{tooltip != null ? tooltip : label}</title>
+    {disableDefaultTooltips ? null : (
+      <title>{tooltip != null ? tooltip : label}</title>
+    )}
     <rect width={width} height={height} fill="white" className={styles.rect} />
     <rect
       width={width}

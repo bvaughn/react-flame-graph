@@ -1,6 +1,6 @@
 /** @flow */
 
-import type { RawData } from './types';
+import type { ChartNode, RawData } from './types';
 
 import React, { PureComponent } from 'react';
 import memoize from 'memoize-one';
@@ -23,11 +23,13 @@ export default class FlameGraphProcessor extends PureComponent<Props, void> {
   // Memoize this wrapper object for performance and to avoid breaking PureComponent's sCU.
   // Attach the memoized function to the instance,
   // So that multiple instances will maintain their own memoized cache.
-  __getChartdata = memoize(rawData => transformChartData(rawData));
+  __getChartdata = memoize((rawData: RawData) => transformChartData(rawData));
 
-  __setFlameGraphRef = ref => {
+  __setFlameGraphRef = (ref: any) => {
     this.__flameGraphRef = ref;
   };
+
+  __flameGraphRef = null;
 
   focusNode(uid: any) {
     if (this.__flameGraphRef) {

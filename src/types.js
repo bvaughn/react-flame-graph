@@ -1,11 +1,23 @@
 /** @flow */
 
+export type RawData = {|
+  backgroundColor?: string,
+  color?: string,
+  children?: Array<RawData>,
+  id?: string,
+  name: string,
+  tooltip?: string,
+  uid?: any,
+  value: number,
+|};
+
 export type ChartNode = {|
   backgroundColor: string,
   color: string,
   depth: number,
   left: number,
   name: string,
+  source: RawData,
   tooltip?: string,
   width: number,
 |};
@@ -17,21 +29,13 @@ export type ChartData = {|
   root: any,
 |};
 
-export type RawData = {|
-  children?: Array<RawData>,
-  name: string,
-  tooltip?: string,
-  value: number,
-  color?: string,
-  backgroundColor?: string,
-  uid?: any,
-|};
-
 export type ItemData = {|
   data: ChartData,
+  disableDefaultTooltips: boolean,
   focusedNode: ChartNode,
   focusNode: (chartNode: ChartNode, uid: any) => void,
-  onMouseOut?: (e: any, node: RawData) => void,
-  onMouseOver?: (e: any, node: RawData) => void,
+  handleMouseEnter: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  handleMouseLeave: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  handleMouseMove: (event: SyntheticMouseEvent<*>, node: RawData) => void,
   scale: (value: number) => number,
 |};

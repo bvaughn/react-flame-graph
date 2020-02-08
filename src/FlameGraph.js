@@ -1,6 +1,6 @@
 /** @flow */
 
-import type { ChartData, ChartNode, RawData } from './types';
+import type { ChartData, ChartNode, ItemData, RawData } from './types';
 
 import React, { PureComponent } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -10,10 +10,12 @@ import { rowHeight } from './constants';
 
 type Props = {|
   data: ChartData,
+  disableDefaultTooltips?: boolean,
   height: number,
   onChange?: (chartNode: ChartNode, uid: any) => void,
-  onMouseOut?: (e: any, node: RawData) => void,
-  onMouseOver?: (e: any, node: RawData) => void,
+  onMouseMove?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  onMouseOut?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  onMouseOver?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
   width: number,
 |};
 
@@ -32,14 +34,26 @@ export default class FlameGraph extends PureComponent<Props, State> {
   // Attach the memoized function to the instance,
   // So that multiple instances will maintain their own memoized cache.
   getItemData = memoize(
-    (data, focusedNode, focusNode, onMouseOut, onMouseOver, width) => ({
-      data,
-      focusedNode,
-      focusNode,
-      scale: value => value / focusedNode.width * width,
-      onMouseOut,
-      onMouseOver,
-    })
+    (
+      data: ChartData,
+      disableDefaultTooltips: boolean,
+      focusedNode: ChartNode,
+      focusNode: (uid: any) => void,
+      handleMouseEnter: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+      handleMouseLeave: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+      handleMouseMove: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+      width: number
+    ) =>
+      ({
+        data,
+        disableDefaultTooltips,
+        focusedNode,
+        focusNode,
+        handleMouseEnter,
+        handleMouseLeave,
+        handleMouseMove,
+        scale: value => (value / focusedNode.width) * width,
+      }: ItemData)
   );
 
   focusNode = (uid: any) => {
@@ -58,16 +72,39 @@ export default class FlameGraph extends PureComponent<Props, State> {
     );
   };
 
+  handleMouseEnter = (event: SyntheticMouseEvent<*>, rawData: RawData) => {
+    const { onMouseOver } = this.props;
+    if (typeof onMouseOver === 'function') {
+      onMouseOver(event, rawData);
+    }
+  };
+
+  handleMouseLeave = (event: SyntheticMouseEvent<*>, rawData: RawData) => {
+    const { onMouseOut } = this.props;
+    if (typeof onMouseOut === 'function') {
+      onMouseOut(event, rawData);
+    }
+  };
+
+  handleMouseMove = (event: SyntheticMouseEvent<*>, rawData: RawData) => {
+    const { onMouseMove } = this.props;
+    if (typeof onMouseMove === 'function') {
+      onMouseMove(event, rawData);
+    }
+  };
+
   render() {
-    const { data, height, onMouseOut, onMouseOver, width } = this.props;
+    const { data, disableDefaultTooltips, height, width } = this.props;
     const { focusedNode } = this.state;
 
     const itemData = this.getItemData(
       data,
+      !!disableDefaultTooltips,
       focusedNode,
       this.focusNode,
-      onMouseOut,
-      onMouseOver,
+      this.handleMouseEnter,
+      this.handleMouseLeave,
+      this.handleMouseMove,
       width
     );
 

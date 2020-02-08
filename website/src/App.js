@@ -8,6 +8,7 @@ import CodeBlock from './CodeBlock';
 import EXAMPLE_CODE from './code/example-code.js';
 import EXAMPLE_DATA from './code/example-data.js';
 import EXAMPLE_INSTALLATION from './code/example-installation.js';
+import EXAMPLE_TOOLTIP_CODE from './code/example-tooltip-code.js';
 
 const simpleData = {
   name: 'foo',
@@ -71,12 +72,22 @@ export default function App() {
       <CodeBlock value={EXAMPLE_CODE} />
       <p>The example data above will display the following flame graph:</p>
       <AutoSizedFlameGraph data={simpleData} height={105} disableScroll />
+      <h2>Tooltips</h2>
       <p>
         Tooltips can be implemented by passing <code>onMouseOver</code> and{' '}
         <code>onMouseOut</code> props to the flamegraph component. These props
         should be defined as functions which receive the mouse event as the
-        first parameter, and the related node as the second parameter.
+        first parameter and the related node as the second parameter.
       </p>
+      <CodeBlock value={EXAMPLE_TOOLTIP_CODE} />
+      <p>Here is an example of a basic tooltip:</p>
+      <AutoSizedFlameGraph
+        data={simpleData}
+        disableDefaultTooltips={true}
+        height={105}
+        disableScroll
+        enableTooltips={true}
+      />
     </Fragment>
   );
 }
