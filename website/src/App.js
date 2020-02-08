@@ -72,12 +72,14 @@ export default function App() {
       <CodeBlock value={EXAMPLE_CODE} />
       <p>The example data above will display the following flame graph:</p>
       <AutoSizedFlameGraph data={simpleData} height={105} disableScroll />
-      <h2>Tooltips</h2>
+      <h2>Custom tooltips</h2>
       <p>
-        Tooltips can be implemented by passing <code>onMouseOver</code> and{' '}
-        <code>onMouseOut</code> props to the flamegraph component. These props
-        should be defined as functions which receive the mouse event as the
-        first parameter and the related node as the second parameter.
+        Custom tooltips can be implemented by passing <code>onMouseOver</code>,{' '}
+        <code>onMouseOut</code>, and <code>onMouseMOve</code> props to the
+        flamegraph component. These props should be defined as functions which
+        receive the mouse event as the first parameter and the related node as
+        the second parameter. It is also advised to set{' '}
+        <code>disableDefaultTooltips</code> when providing your own tooltips.
       </p>
       <CodeBlock value={EXAMPLE_TOOLTIP_CODE} />
       <p>Here is an example of a basic tooltip:</p>

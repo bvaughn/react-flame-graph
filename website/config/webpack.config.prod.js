@@ -153,7 +153,8 @@ module.exports = {
       'react-native': 'react-native-web',
 
       // Load profiling-capable builds:
-      'react-dom': 'react-dom/cjs/react-dom.profiling.min.js',
+      'react-dom$': 'react-dom/profiling',
+      'scheduler/tracing': 'scheduler/tracing-profiling',
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
