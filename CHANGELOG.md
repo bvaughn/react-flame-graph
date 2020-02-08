@@ -1,5 +1,9 @@
 ## Changelog
 
+##### 1.4.0
+
+- 🎉 Add `onMouseOver`, `onMouseOut`, and `onMouseMove` props to enable custom tooltips ([rmccue](https://github.com/rmccue) - [#27](https://github.com/bvaughn/react-flame-graph/pull/27))
+
 ##### 1.3.0
 
 - 🎉 Enable node selection with a ref via `focusNode` method ([jgzuke](https://github.com/jgzuke) - [#17](https://github.com/bvaughn/react-flame-graph/pull/17))
