@@ -1,6 +1,6 @@
 import type { RawData } from './types';
 
-import React from 'react';
+import React, { SyntheticMouseEvent } from 'react';
 import { minWidthToDisplayText, textHeight } from './constants';
 
 import styles from './LabeledRect.css';
@@ -13,9 +13,9 @@ type Props = {
   isDimmed?: boolean,
   label: string,
   onClick: Function,
-  onMouseEnter: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-  onMouseLeave: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-  onMouseMove: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  onMouseEnter: (event: SyntheticMouseEvent, node: RawData) => void,
+  onMouseLeave: (event: SyntheticMouseEvent, node: RawData) => void,
+  onMouseMove: (event: SyntheticMouseEvent, node: RawData) => void,
   tooltip?: string,
   width: number,
   x: number,

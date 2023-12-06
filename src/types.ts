@@ -1,3 +1,5 @@
+import { SyntheticMouseEvent } from 'react';
+
 export type RawData = {
   backgroundColor?: string,
   color?: string,
@@ -23,7 +25,7 @@ export type ChartNode = {
 export type ChartData = {
   height: number,
   levels: Array<Array<any>>,
-  nodes: { [uid: any]: ChartNode },
+  nodes: { [uid: string]: ChartNode },
   root: any,
 };;
 
@@ -32,8 +34,8 @@ export type ItemData = {
   disableDefaultTooltips: boolean,
   focusedNode: ChartNode,
   focusNode: (chartNode: ChartNode, uid: any) => void,
-  handleMouseEnter: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-  handleMouseLeave: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-  handleMouseMove: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  handleMouseEnter: (event: SyntheticMouseEvent, node: RawData) => void,
+  handleMouseLeave: (event: SyntheticMouseEvent, node: RawData) => void,
+  handleMouseMove: (event: SyntheticMouseEvent, node: RawData) => void,
   scale: (value: number) => number,
 };;
