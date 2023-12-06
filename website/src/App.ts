@@ -1,9 +1,9 @@
 /** @flow */
 
 import React, { Fragment } from 'react';
-import AutoSizedFlameGraph from './AutoSizedFlameGraph';
-import ChartDataLoader from './ChartDataLoader';
-import CodeBlock from './CodeBlock';
+import AutoSizedFlameGraph from './AutoSizedFlameGraph.js';
+import ChartDataLoader from './ChartDataLoader.js';
+import CodeBlock from './CodeBlock.js';
 
 import EXAMPLE_CODE from './code/example-code.js';
 import EXAMPLE_DATA from './code/example-data.js';
