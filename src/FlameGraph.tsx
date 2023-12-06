@@ -1,6 +1,6 @@
 import type { ChartData, ChartNode, ItemData, RawData } from './types';
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent, SyntheticMouseEvent } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import memoize from 'memoize-one';
 import ItemRenderer from './ItemRenderer';
@@ -11,9 +11,9 @@ type Props = {
   disableDefaultTooltips?: boolean,
   height: number,
   onChange?: (chartNode: ChartNode, uid: any) => void,
-  onMouseMove?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-  onMouseOut?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-  onMouseOver?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+  onMouseMove?: (event: SyntheticMouseEvent, node: RawData) => void,
+  onMouseOut?: (event: SyntheticMouseEvent, node: RawData) => void,
+  onMouseOver?: (event: SyntheticMouseEvent, node: RawData) => void,
   width: number,
 };;
 
@@ -37,9 +37,9 @@ export default class FlameGraph extends PureComponent<Props, State> {
       disableDefaultTooltips: boolean,
       focusedNode: ChartNode,
       focusNode: (uid: any) => void,
-      handleMouseEnter: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-      handleMouseLeave: (event: SyntheticMouseEvent<*>, node: RawData) => void,
-      handleMouseMove: (event: SyntheticMouseEvent<*>, node: RawData) => void,
+      handleMouseEnter: (event: SyntheticMouseEvent, node: RawData) => void,
+      handleMouseLeave: (event: SyntheticMouseEvent, node: RawData) => void,
+      handleMouseMove: (event: SyntheticMouseEvent, node: RawData) => void,
       width: number
     ) =>
       ({
@@ -51,7 +51,7 @@ export default class FlameGraph extends PureComponent<Props, State> {
         handleMouseLeave,
         handleMouseMove,
         scale: value => (value / focusedNode.width) * width,
-      }: ItemData)
+      } as ItemData)
   );
 
   focusNode = (uid: any) => {
@@ -70,21 +70,21 @@ export default class FlameGraph extends PureComponent<Props, State> {
     );
   };
 
-  handleMouseEnter = (event: SyntheticMouseEvent<*>, rawData: RawData) => {
+  handleMouseEnter = (event: SyntheticMouseEvent, rawData: RawData) => {
     const { onMouseOver } = this.props;
     if (typeof onMouseOver === 'function') {
       onMouseOver(event, rawData);
     }
   };
 
-  handleMouseLeave = (event: SyntheticMouseEvent<*>, rawData: RawData) => {
+  handleMouseLeave = (event: SyntheticMouseEvent, rawData: RawData) => {
     const { onMouseOut } = this.props;
     if (typeof onMouseOut === 'function') {
       onMouseOut(event, rawData);
     }
   };
 
-  handleMouseMove = (event: SyntheticMouseEvent<*>, rawData: RawData) => {
+  handleMouseMove = (event: SyntheticMouseEvent, rawData: RawData) => {
     const { onMouseMove } = this.props;
     if (typeof onMouseMove === 'function') {
       onMouseMove(event, rawData);
