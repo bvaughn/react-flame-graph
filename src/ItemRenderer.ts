@@ -1,5 +1,3 @@
-/** @flow */
-
 import type { ItemData } from './types';
 
 import React, { PureComponent } from 'react';

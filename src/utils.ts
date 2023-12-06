@@ -1,5 +1,3 @@
-/** @flow */
-
 import type { ChartData, ChartNode, RawData } from './types';
 
 import { backgroundColorGradient, colorGradient } from './constants';

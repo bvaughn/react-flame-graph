@@ -1,5 +1,3 @@
-/** @flow */
-
 import type { ChartData, ChartNode, ItemData, RawData } from './types';
 
 import React, { PureComponent } from 'react';

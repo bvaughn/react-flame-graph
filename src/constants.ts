@@ -1,5 +1,3 @@
-/** @flow */
-
 export const minWidthToDisplay = 1;
 export const minWidthToDisplayText = 12;
 export const rowHeight = 20;

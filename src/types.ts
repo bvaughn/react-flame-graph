@@ -1,5 +1,3 @@
-/** @flow */
-
 export type RawData = {|
   backgroundColor?: string,
   color?: string,

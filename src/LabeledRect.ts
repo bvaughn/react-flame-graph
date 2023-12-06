@@ -1,5 +1,3 @@
-/** @flow */
-
 import type { RawData } from './types';
 
 import React from 'react';
