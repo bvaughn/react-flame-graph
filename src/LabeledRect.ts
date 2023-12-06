@@ -5,7 +5,7 @@ import { minWidthToDisplayText, textHeight } from './constants';
 
 import styles from './LabeledRect.css';
 
-type Props = {|
+type Props = {
   backgroundColor: string,
   color: string,
   disableDefaultTooltips: boolean,
@@ -20,7 +20,7 @@ type Props = {|
   width: number,
   x: number,
   y: number,
-|};
+};;
 
 const LabeledRect = ({
   backgroundColor,

@@ -5,14 +5,14 @@ import AutoSizedFlameGraph from './AutoSizedFlameGraph';
 
 import styles from './ChartDataLoader.module.css';
 
-type Props = {|
+type Props = {
   height: number,
   url: string,
-|};
+};;
 
-type State = {|
+type State = {
   data: null,
-|};
+};;
 
 export default class ChartDataLoader extends Component<Props, State> {
   state: State = {

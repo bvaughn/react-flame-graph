@@ -1,4 +1,4 @@
-export type RawData = {|
+export type RawData = {
   backgroundColor?: string,
   color?: string,
   children?: Array<RawData>,
@@ -7,9 +7,9 @@ export type RawData = {|
   tooltip?: string,
   uid?: any,
   value: number,
-|};
+};;
 
-export type ChartNode = {|
+export type ChartNode = {
   backgroundColor: string,
   color: string,
   depth: number,
@@ -18,16 +18,16 @@ export type ChartNode = {|
   source: RawData,
   tooltip?: string,
   width: number,
-|};
+};;
 
-export type ChartData = {|
+export type ChartData = {
   height: number,
   levels: Array<Array<any>>,
   nodes: { [uid: any]: ChartNode },
   root: any,
-|};
+};;
 
-export type ItemData = {|
+export type ItemData = {
   data: ChartData,
   disableDefaultTooltips: boolean,
   focusedNode: ChartNode,
@@ -36,4 +36,4 @@ export type ItemData = {|
   handleMouseLeave: (event: SyntheticMouseEvent<*>, node: RawData) => void,
   handleMouseMove: (event: SyntheticMouseEvent<*>, node: RawData) => void,
   scale: (value: number) => number,
-|};
+};;

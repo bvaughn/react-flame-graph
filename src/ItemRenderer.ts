@@ -4,11 +4,11 @@ import React, { PureComponent } from 'react';
 import LabeledRect from './LabeledRect';
 import { minWidthToDisplay, rowHeight } from './constants';
 
-type Props = {|
+type Props = {
   data: ItemData,
   index: number,
   style: Object,
-|};
+};;
 
 // Extend PureComponent to avoid rendering more than once per row.
 // This isn't always important,

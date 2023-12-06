@@ -6,7 +6,7 @@ import memoize from 'memoize-one';
 import ItemRenderer from './ItemRenderer';
 import { rowHeight } from './constants';
 
-type Props = {|
+type Props = {
   data: ChartData,
   disableDefaultTooltips?: boolean,
   height: number,
@@ -15,11 +15,11 @@ type Props = {|
   onMouseOut?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
   onMouseOver?: (event: SyntheticMouseEvent<*>, node: RawData) => void,
   width: number,
-|};
+};;
 
-type State = {|
+type State = {
   focusedNode: ChartNode,
-|};
+};;
 
 export default class FlameGraph extends PureComponent<Props, State> {
   // Select the root node by default.

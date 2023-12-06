@@ -5,12 +5,12 @@ import memoize from 'memoize-one';
 import FlameGraph from './FlameGraph';
 import { transformChartData } from './utils';
 
-type Props = {|
+type Props = {
   data: RawData,
   height: number,
   width: number,
   onChange?: (chartNode: ChartNode, uid: any) => void,
-|};
+};;
 
 // Wrapper component responsible for converting raw chart data into the format required by FlameGraph.
 // Doing this conversion as a separate component has two benefits:
